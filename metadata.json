@@ -1,0 +1,7 @@
+{
+  "name": "ZJUT Creative Workshop",
+  "description": "浙江工业大学文创创意工坊 - An interactive platform for personalized campus merchandise, creative community sharing, and design competitions.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
