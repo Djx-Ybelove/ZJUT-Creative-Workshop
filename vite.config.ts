@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // 关键配置：GitHub Pages 的仓库名称
-  // 如果你的仓库名不是 ZJUT-Creative-Workshop，请修改这里
-  base: '/ZJUT-Creative-Workshop/',
+  // Cloudflare Pages 部署通常部署在根域名下，不需要 base 配置
+  // 如果你需要自定义域名，也通常是根目录
 })
