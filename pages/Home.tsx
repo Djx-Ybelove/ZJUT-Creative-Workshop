@@ -3,21 +3,62 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, PenTool, ShoppingBag, Lightbulb, Star, Trophy } from 'lucide-react';
 
 const Home: React.FC = () => {
+  // Configured with provided images
+  const featuredProducts = [
+    {
+      id: 1,
+      name: "屏峰记忆 · 帆布手提袋",
+      price: "39.00",
+      sales: "300+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/1765883688215_image.png"
+    },
+    {
+      id: 2,
+      name: "工大韵味 · 陶瓷马克杯",
+      price: "45.00",
+      sales: "150+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png"
+    },
+    {
+      id: 3,
+      name: "校史馆 · 复古笔记本",
+      price: "28.00",
+      sales: "500+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/1765883703311_image.png"
+    },
+    {
+      id: 4,
+      name: "朝晖银杏 · 纪念礼盒",
+      price: "88.00",
+      sales: "120+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/1765883719610_image.png"
+    }
+  ];
+
   return (
     <div className="w-full">
-      {/* Hero Banner - Using a gradient background to represent creativity */}
-      <section className="relative bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://picsum.photos/1920/1080?grayscale')] bg-cover bg-center mix-blend-overlay"></div>
+      {/* Hero Banner */}
+      <section className="relative bg-slate-900 text-white overflow-hidden">
+        {/* Using a high quality background image provided */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://imghub.djx-ybelove.pp.ua/file/6Trs6pEv.jpg" 
+            alt="ZJUT Campus" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-zjut-blue/80 via-indigo-900/70 to-slate-900/60 mix-blend-multiply"></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
           <div className="md:w-2/3">
-            <span className="inline-block py-1 px-3 rounded-full bg-zjut-accent/20 text-zjut-accent text-sm font-semibold mb-6 border border-zjut-accent/50">
+            <span className="inline-block py-1 px-3 rounded-full bg-zjut-accent/20 text-zjut-accent text-sm font-semibold mb-6 border border-zjut-accent/50 backdrop-blur-sm">
               2024 秋季新品发布
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-md">
               设计属于你的 <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">浙工大独家记忆</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-teal-200">浙工大独家记忆</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-slate-100 mb-8 max-w-2xl drop-shadow-sm font-light">
               从屏峰的向日葵到朝晖的钟楼，我们将校园风景融入生活。使用我们的在线设计工具，定制独一无二的文创产品。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -25,7 +66,7 @@ const Home: React.FC = () => {
                 <PenTool size={20} />
                 开始定制
               </Link>
-              <Link to="/shop" className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
+              <Link to="/shop" className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
                 <ShoppingBag size={20} />
                 浏览商城
               </Link>
@@ -92,19 +133,24 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-                <div className="relative aspect-square overflow-hidden bg-slate-200">
-                  <img src={`https://picsum.photos/400/400?random=${i}`} alt="Product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur text-xs font-bold px-2 py-1 rounded">
+            {featuredProducts.map((product) => (
+              <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                <div className="relative aspect-square overflow-hidden bg-slate-100 flex items-center justify-center p-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    loading="lazy"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-3 right-3 bg-red-500/90 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
                     热销
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-1">屏峰印象帆布袋</h3>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-1 truncate">{product.name}</h3>
                   <div className="flex justify-between items-center">
-                    <span className="text-zjut-blue font-bold">¥ 39.00</span>
-                    <span className="text-xs text-slate-500">200+ 人付款</span>
+                    <span className="text-zjut-blue font-bold">¥ {product.price}</span>
+                    <span className="text-xs text-slate-500">{product.sales} 人付款</span>
                   </div>
                 </div>
               </div>
@@ -141,7 +187,12 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="md:w-1/2 h-64 md:h-auto relative">
-               <img src="https://picsum.photos/800/600?random=10" alt="Competition" className="w-full h-full object-cover opacity-80" />
+               <img 
+                src="https://imghub.djx-ybelove.pp.ua/file/akiAe8Dk.jpg" 
+                alt="Competition" 
+                loading="lazy"
+                className="w-full h-full object-cover opacity-90" 
+              />
                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-slate-900"></div>
             </div>
           </div>

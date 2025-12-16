@@ -23,12 +23,12 @@ const Customize: React.FC = () => {
   const [aiSuggestion, setAiSuggestion] = useState('');
   const [isAiLoading, setIsAiLoading] = useState(false);
 
-  // Mock Assets
+  // Updated Mock Assets with provided images
   const stickers = [
-    'https://picsum.photos/100/100?random=101',
-    'https://picsum.photos/100/100?random=102',
-    'https://picsum.photos/100/100?random=103',
-    'https://picsum.photos/100/100?random=104',
+    'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
   ];
 
   const handleAddSticker = (url: string) => {
@@ -196,23 +196,26 @@ const Customize: React.FC = () => {
         {/* The Product Canvas */}
         <div className="relative w-[500px] h-[600px] bg-white shadow-2xl rounded-2xl flex items-center justify-center overflow-hidden">
            {/* Product Placeholder Image */}
-           <img 
-             src={
-               productType === 'tote' ? 'https://picsum.photos/500/600?random=200' :
-               productType === 'tshirt' ? 'https://picsum.photos/500/600?random=201' :
-               'https://picsum.photos/500/600?random=202'
-             } 
-             alt="Product Base" 
-             className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none"
-           />
-           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-             <span className="text-slate-400 text-sm font-medium bg-white/50 px-3 py-1 rounded-full backdrop-blur">
-               {productType === 'tote' ? '帆布袋' : productType === 'tshirt' ? '纯棉T恤' : '软面抄'}
+           <div className="absolute inset-0 p-8 flex items-center justify-center bg-gray-50">
+             <img 
+               src={
+                 productType === 'tote' ? 'https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png' :
+                 productType === 'tshirt' ? 'https://imghub.djx-ybelove.pp.ua/file/1765883688215_image.png' :
+                 'https://imghub.djx-ybelove.pp.ua/file/1765883703311_image.png'
+               } 
+               alt="Product Base" 
+               className="w-full h-full object-contain opacity-80 pointer-events-none mix-blend-multiply"
+             />
+           </div>
+           
+           <div className="absolute top-4 left-0 w-full flex items-center justify-center pointer-events-none z-0">
+             <span className="text-slate-400 text-sm font-medium bg-white/50 px-3 py-1 rounded-full backdrop-blur border border-slate-200">
+               {productType === 'tote' ? '帆布袋' : productType === 'tshirt' ? '纯棉T恤' : '手账本'}
              </span>
            </div>
 
            {/* Drop Zone */}
-           <div className="absolute inset-[15%] border border-dashed border-slate-400/50 rounded-lg">
+           <div className="absolute inset-[20%] border border-dashed border-slate-400/30 rounded-lg">
               {elements.map((el) => (
                 <div
                   key={el.id}

@@ -13,13 +13,36 @@ const Shop: React.FC = () => {
     { id: 'digital', name: '数码周边' },
   ];
 
+  // Using specific product images provided
+  const productImages = [
+    'https://imghub.djx-ybelove.pp.ua/file/1765883688215_image.png',
+    'https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png',
+    'https://imghub.djx-ybelove.pp.ua/file/1765883703311_image.png',
+    'https://imghub.djx-ybelove.pp.ua/file/1765883719610_image.png',
+    'https://imghub.djx-ybelove.pp.ua/file/6Trs6pEv.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/akiAe8Dk.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/JDffOyWk.jpg'
+  ];
+
+  const productNames = [
+    'ZJUT 经典T恤',
+    '工大印记 帆布袋',
+    '朝晖纪念 马克杯',
+    '校训 钢笔礼盒',
+    '校园风光 明信片',
+    '运动场 纪念鼠标垫',
+    '建筑美学 装饰画',
+    '图书馆 阅读书签'
+  ];
+
   const products: Product[] = Array.from({ length: 8 }).map((_, i) => ({
     id: i.toString(),
-    name: i % 2 === 0 ? '校徽刺绣棒球帽' : '工大风景明信片套装',
-    category: i % 2 === 0 ? 'apparel' : 'stationery',
-    price: 29 + i * 10,
+    name: productNames[i],
+    category: i < 2 ? 'apparel' : i < 4 ? 'accessories' : 'stationery',
+    price: 29 + i * 12,
     sales: 100 + i * 20,
-    image: `https://picsum.photos/400/400?random=${i + 500}`,
+    image: productImages[i],
   }));
 
   const filteredProducts = activeCategory === 'all' 
@@ -62,8 +85,13 @@ const Shop: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <div key={product.id} className="group border border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
-              <div className="relative aspect-square bg-slate-100 overflow-hidden">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="relative aspect-square bg-slate-50 overflow-hidden flex items-center justify-center p-2">
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  loading="lazy"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                />
                 <button className="absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-slate-800 hover:text-zjut-blue hover:bg-zjut-light transition-colors transform translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 duration-300">
                   <Plus size={20} />
                 </button>

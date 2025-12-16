@@ -9,23 +9,50 @@ const Competition: React.FC = () => {
     deadline: '2024-12-31',
     status: 'active',
     participants: 128,
-    image: 'https://picsum.photos/1200/400?random=888',
+    image: 'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
   };
 
-  const entries = Array.from({ length: 4 }).map((_, i) => ({
-    id: i,
-    image: `https://picsum.photos/400/300?random=${i + 10}`,
-    title: i % 2 === 0 ? '机械臂模型摆件' : '校训古风折扇',
-    author: `参赛者 ${i + 1}`,
-    votes: 340 + i * 55,
-  }));
+  const entries = [
+    {
+      id: 1,
+      image: 'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
+      title: '机械臂模型摆件',
+      author: '参赛者 1',
+      votes: 340
+    },
+    {
+      id: 2,
+      image: 'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
+      title: '校训古风折扇',
+      author: '参赛者 2',
+      votes: 395
+    },
+    {
+      id: 3,
+      image: 'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
+      title: '银杏叶书签套装',
+      author: '参赛者 3',
+      votes: 410
+    },
+    {
+      id: 4,
+      image: 'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
+      title: '屏峰地图丝巾',
+      author: '参赛者 4',
+      votes: 288
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50">
       
       {/* Hero Header */}
       <div className="relative h-64 md:h-80 w-full overflow-hidden bg-slate-900">
-        <img src={activeCompetition.image} alt="Competition Banner" className="w-full h-full object-cover opacity-60" />
+        <img 
+          src={activeCompetition.image} 
+          alt="Competition Banner" 
+          className="w-full h-full object-cover opacity-60" 
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white">
           <div className="max-w-7xl mx-auto">
@@ -84,7 +111,14 @@ const Competition: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {entries.map((entry) => (
                   <div key={entry.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 hover:border-zjut-blue/30 transition-all">
-                    <img src={entry.image} alt={entry.title} className="w-full h-48 object-cover" />
+                    <div className="h-48 overflow-hidden bg-slate-100">
+                      <img 
+                        src={entry.image} 
+                        alt={entry.title} 
+                        loading="lazy"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                      />
+                    </div>
                     <div className="p-4">
                       <h3 className="font-bold text-slate-900 text-lg mb-1">{entry.title}</h3>
                       <p className="text-slate-500 text-sm mb-4">By {entry.author}</p>

@@ -3,15 +3,25 @@ import { Heart, MessageCircle, Share2, Filter } from 'lucide-react';
 import { DesignPost } from '../types';
 
 const Community: React.FC = () => {
-  const posts: DesignPost[] = Array.from({ length: 9 }).map((_, i) => ({
+  // Using the provided images to simulate user posts
+  const postImages = [
+    'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/JDffOyWk.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
+  ];
+
+  const posts: DesignPost[] = Array.from({ length: 6 }).map((_, i) => ({
     id: i.toString(),
     author: `设计师 ${i + 1}`,
-    avatar: `https://i.pravatar.cc/150?u=${i}`,
-    title: i % 2 === 0 ? '朝晖校区银杏叶书签' : '屏峰图书馆纪念T恤',
-    description: '设计的灵感来源于深秋的校园，金黄的银杏落叶铺满了大道...',
-    image: `https://picsum.photos/600/600?random=${i + 300}`,
-    likes: Math.floor(Math.random() * 500),
-    comments: Math.floor(Math.random() * 50),
+    avatar: `https://i.pravatar.cc/150?u=${i + 10}`,
+    title: i % 2 === 0 ? '校园秋日随拍设计' : '复古工大建筑系列',
+    description: '设计的灵感来源于漫步校园的午后，光影交错间的灵感迸发...',
+    image: postImages[i % postImages.length],
+    likes: Math.floor(Math.random() * 500) + 50,
+    comments: Math.floor(Math.random() * 50) + 5,
   }));
 
   return (
@@ -38,8 +48,13 @@ const Community: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <div key={post.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-100 group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <img 
+                  src={post.image} 
+                  alt={post.title} 
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                   <span className="text-white font-medium text-sm truncate">{post.description}</span>
                 </div>
