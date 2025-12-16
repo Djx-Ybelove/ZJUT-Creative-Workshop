@@ -1,37 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, PenTool, ShoppingBag, Lightbulb, Star, Trophy } from 'lucide-react';
+import { ArrowRight, PenTool, ShoppingBag, Lightbulb, Trophy } from 'lucide-react';
 
 const Home: React.FC = () => {
-  // Configured with provided images
+  // Configured with provided images and matching Shop items
   const featuredProducts = [
     {
       id: 1,
-      name: "屏峰记忆 · 帆布手提袋",
-      price: "39.00",
-      sales: "300+",
+      name: "屏峰流影 · 金属挂饰",
+      price: "25.00",
+      sales: "420+",
       image: "https://imghub.djx-ybelove.pp.ua/file/1765883688215_image.png"
     },
     {
       id: 2,
-      name: "工大韵味 · 陶瓷马克杯",
-      price: "45.00",
-      sales: "150+",
-      image: "https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png"
+      name: "朝晖印象 · 帆布手袋",
+      price: "39.00",
+      sales: "660+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/1765883719610_image.png"
     },
     {
       id: 3,
-      name: "校史馆 · 复古笔记本",
-      price: "28.00",
-      sales: "500+",
+      name: "莫干雅韵 · 证件卡套",
+      price: "18.00",
+      sales: "850+",
       image: "https://imghub.djx-ybelove.pp.ua/file/1765883703311_image.png"
     },
     {
       id: 4,
-      name: "朝晖银杏 · 纪念礼盒",
-      price: "88.00",
-      sales: "120+",
-      image: "https://imghub.djx-ybelove.pp.ua/file/1765883719610_image.png"
+      name: "志愿先锋 · 工大马甲",
+      price: "68.00",
+      sales: "150+",
+      image: "https://imghub.djx-ybelove.pp.ua/file/iYY96icE.png"
     }
   ];
 
@@ -39,14 +39,15 @@ const Home: React.FC = () => {
     <div className="w-full">
       {/* Hero Banner */}
       <section className="relative bg-slate-900 text-white overflow-hidden">
-        {/* Using a high quality background image provided */}
+        {/* Enhanced background visibility */}
         <div className="absolute inset-0">
           <img 
             src="https://imghub.djx-ybelove.pp.ua/file/6Trs6pEv.jpg" 
             alt="ZJUT Campus" 
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-zjut-blue/80 via-indigo-900/70 to-slate-900/60 mix-blend-multiply"></div>
+          {/* Darker overlay to make text pop while keeping image visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
@@ -54,11 +55,11 @@ const Home: React.FC = () => {
             <span className="inline-block py-1 px-3 rounded-full bg-zjut-accent/20 text-zjut-accent text-sm font-semibold mb-6 border border-zjut-accent/50 backdrop-blur-sm">
               2024 秋季新品发布
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-md">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
               设计属于你的 <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-teal-200">浙工大独家记忆</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-100 mb-8 max-w-2xl drop-shadow-sm font-light">
+            <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-2xl drop-shadow-md font-light">
               从屏峰的向日葵到朝晖的钟楼，我们将校园风景融入生活。使用我们的在线设计工具，定制独一无二的文创产品。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -191,7 +192,7 @@ const Home: React.FC = () => {
                 src="https://imghub.djx-ybelove.pp.ua/file/akiAe8Dk.jpg" 
                 alt="Competition" 
                 loading="lazy"
-                className="w-full h-full object-cover opacity-90" 
+                className="w-full h-full object-cover opacity-80" 
               />
                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-slate-900"></div>
             </div>

@@ -3,25 +3,37 @@ import { Heart, MessageCircle, Share2, Filter } from 'lucide-react';
 import { DesignPost } from '../types';
 
 const Community: React.FC = () => {
-  // Using the provided images to simulate user posts
-  const postImages = [
+  // Provided pool of images
+  const imagePool = [
     'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/JDffOyWk.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png',
+    'https://imghub.djx-ybelove.pp.ua/file/akiAe8Dk.jpg',
   ];
 
-  const posts: DesignPost[] = Array.from({ length: 6 }).map((_, i) => ({
+  // Richer content generation
+  const postContents = [
+    { title: '晨曦中的图书馆', desc: '早起去图书馆占座，看到了绝美的日出，配色灵感get！', imgIndex: 0 },
+    { title: '板球场的活力橙', desc: '运动会的色彩太有活力了，设计了一款运动风的周边。', imgIndex: 1 },
+    { title: '复古机械臂模型', desc: '工科生的浪漫，用乐高拼搭出的工业之美。', imgIndex: 2 },
+    { title: '古风折扇设计', desc: '结合了校训和传统书法的元素，夏日必备单品。', imgIndex: 3 },
+    { title: '银杏叶书签', desc: '朝晖校区的银杏黄了，做一枚书签留住这个秋天。', imgIndex: 4 },
+    { title: '屏峰手绘地图丝巾', desc: '把整个校区戴在身上，色彩丰富又时尚。', imgIndex: 5 },
+  ];
+
+  const posts: DesignPost[] = postContents.map((content, i) => ({
     id: i.toString(),
-    author: `设计师 ${i + 1}`,
-    avatar: `https://i.pravatar.cc/150?u=${i + 10}`,
-    title: i % 2 === 0 ? '校园秋日随拍设计' : '复古工大建筑系列',
-    description: '设计的灵感来源于漫步校园的午后，光影交错间的灵感迸发...',
-    image: postImages[i % postImages.length],
-    likes: Math.floor(Math.random() * 500) + 50,
-    comments: Math.floor(Math.random() * 50) + 5,
+    author: `设计师 ${String.fromCharCode(65 + i)}`,
+    avatar: `https://i.pravatar.cc/150?u=${i + 20}`,
+    title: content.title,
+    description: content.desc,
+    image: imagePool[content.imgIndex],
+    likes: Math.floor(Math.random() * 300) + 20,
+    comments: Math.floor(Math.random() * 40) + 2,
   }));
 
   return (
@@ -65,7 +77,8 @@ const Community: React.FC = () => {
                   <img src={post.avatar} alt={post.author} className="w-8 h-8 rounded-full border border-slate-200" />
                   <span className="text-sm font-medium text-slate-700">{post.author}</span>
                 </div>
-                <h3 className="font-bold text-slate-900 mb-4">{post.title}</h3>
+                <h3 className="font-bold text-slate-900 mb-2">{post.title}</h3>
+                <p className="text-slate-500 text-sm line-clamp-2 mb-4">{post.description}</p>
                 
                 <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                   <button className="flex items-center gap-1.5 text-slate-500 hover:text-red-500 transition-colors text-sm">

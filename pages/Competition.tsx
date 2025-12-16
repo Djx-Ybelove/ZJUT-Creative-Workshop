@@ -9,36 +9,36 @@ const Competition: React.FC = () => {
     deadline: '2024-12-31',
     status: 'active',
     participants: 128,
-    image: 'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
+    image: 'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg', // Updated banner image
   };
 
   const entries = [
     {
       id: 1,
-      image: 'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
-      title: '机械臂模型摆件',
-      author: '参赛者 1',
-      votes: 340
+      image: 'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
+      title: '和山水韵 · 古风折扇',
+      author: '艺术学院 · 张同学',
+      votes: 452
     },
     {
       id: 2,
-      image: 'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
-      title: '校训古风折扇',
-      author: '参赛者 2',
+      image: 'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
+      title: '工业之光 · 机械摆件',
+      author: '机械学院 · 李同学',
       votes: 395
     },
     {
       id: 3,
       image: 'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
-      title: '银杏叶书签套装',
-      author: '参赛者 3',
+      title: '知秋 · 银杏金属书签',
+      author: '人文学院 · 王同学',
       votes: 410
     },
     {
       id: 4,
       image: 'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
-      title: '屏峰地图丝巾',
-      author: '参赛者 4',
+      title: '漫步屏峰 · 丝巾设计',
+      author: '设计学院 · 赵同学',
       votes: 288
     }
   ];
@@ -51,9 +51,9 @@ const Competition: React.FC = () => {
         <img 
           src={activeCompetition.image} 
           alt="Competition Banner" 
-          className="w-full h-full object-cover opacity-60" 
+          className="w-full h-full object-cover opacity-80" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-semibold mb-4 border border-green-500/30">
@@ -110,18 +110,21 @@ const Competition: React.FC = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {entries.map((entry) => (
-                  <div key={entry.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 hover:border-zjut-blue/30 transition-all">
-                    <div className="h-48 overflow-hidden bg-slate-100">
+                  <div key={entry.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 hover:border-zjut-blue/30 transition-all group">
+                    <div className="h-48 overflow-hidden bg-slate-100 relative">
                       <img 
                         src={entry.image} 
                         alt={entry.title} 
                         loading="lazy"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                       />
+                      <div className="absolute top-2 right-2 bg-black/50 backdrop-blur text-white text-xs px-2 py-1 rounded">
+                         编号 #{100 + entry.id}
+                      </div>
                     </div>
                     <div className="p-4">
                       <h3 className="font-bold text-slate-900 text-lg mb-1">{entry.title}</h3>
-                      <p className="text-slate-500 text-sm mb-4">By {entry.author}</p>
+                      <p className="text-slate-500 text-sm mb-4">{entry.author}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-slate-600 font-medium">{entry.votes} 票</span>
                         <button className="px-4 py-2 bg-slate-100 text-zjut-blue rounded-lg font-medium hover:bg-zjut-blue hover:text-white transition-colors">

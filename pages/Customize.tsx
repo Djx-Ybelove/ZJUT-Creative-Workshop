@@ -23,12 +23,19 @@ const Customize: React.FC = () => {
   const [aiSuggestion, setAiSuggestion] = useState('');
   const [isAiLoading, setIsAiLoading] = useState(false);
 
-  // Updated Mock Assets with provided images
+  // Prices
+  const prices = {
+    tote: 29.00,
+    tshirt: 59.00,
+    notebook: 19.00
+  };
+
+  // Updated Sticker Assets
   const stickers = [
-    'https://imghub.djx-ybelove.pp.ua/file/7osECFpH.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/RBi6dQKj.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/TdOyOhIK.jpg',
     'https://imghub.djx-ybelove.pp.ua/file/jdc9txQh.jpg',
+    'https://imghub.djx-ybelove.pp.ua/file/sqCbJ5LX.jpg',
   ];
 
   const handleAddSticker = (url: string) => {
@@ -77,6 +84,75 @@ const Customize: React.FC = () => {
     setElements(elements.filter(el => el.id !== id));
     if (selectedElementId === id) setSelectedElementId(null);
   };
+
+  // SVG Components for Pure Color Physical Objects
+  const ToteBagSVG = () => (
+    <svg viewBox="0 0 400 500" className="w-full h-full drop-shadow-xl">
+      <defs>
+        <filter id="fabricTexture" x="0" y="0" width="100%" height="100%">
+           <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
+           <feColorMatrix type="saturate" values="0" />
+           <feBlend in="SourceGraphic" in2="noise" mode="multiply" result="texture" />
+        </filter>
+        <linearGradient id="bagGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#f8f8f8" />
+          <stop offset="50%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#f0f0f0" />
+        </linearGradient>
+      </defs>
+      {/* Handles */}
+      <path d="M120 100 Q 120 20 200 20 Q 280 20 280 100" fill="none" stroke="#e5e5e5" strokeWidth="24" />
+      <path d="M120 100 Q 120 20 200 20 Q 280 20 280 100" fill="none" stroke="#d4d4d4" strokeWidth="20" />
+      
+      {/* Bag Body */}
+      <rect x="50" y="100" width="300" height="350" rx="10" ry="10" fill="url(#bagGradient)" />
+      {/* Stitching Detail */}
+      <rect x="60" y="110" width="280" height="330" rx="5" ry="5" fill="none" stroke="#e5e5e5" strokeWidth="2" strokeDasharray="5,5" />
+    </svg>
+  );
+
+  const TShirtSVG = () => (
+    <svg viewBox="0 0 500 500" className="w-full h-full drop-shadow-xl">
+      <defs>
+        <linearGradient id="shirtGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#f5f5f5" />
+        </linearGradient>
+      </defs>
+      {/* Shirt Shape */}
+      <path 
+        d="M150 50 C 150 50, 180 80, 250 80 C 320 80, 350 50, 350 50 L 450 120 L 420 160 L 360 130 L 360 450 L 140 450 L 140 130 L 80 160 L 50 120 Z" 
+        fill="url(#shirtGradient)" 
+        stroke="#e5e5e5" 
+        strokeWidth="1"
+      />
+      {/* Neck Line */}
+      <path d="M150 50 C 150 50, 180 80, 250 80 C 320 80, 350 50, 350 50" fill="none" stroke="#e5e5e5" strokeWidth="2" />
+    </svg>
+  );
+
+  const NotebookSVG = () => (
+    <svg viewBox="0 0 400 500" className="w-full h-full drop-shadow-xl">
+       <defs>
+        <linearGradient id="coverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#3b4252" />
+          <stop offset="10%" stopColor="#434c5e" />
+          <stop offset="100%" stopColor="#2e3440" />
+        </linearGradient>
+      </defs>
+      {/* Book Cover */}
+      <rect x="60" y="50" width="280" height="400" rx="5" ry="5" fill="url(#coverGradient)" />
+      {/* Binding/Spine */}
+      <rect x="60" y="50" width="30" height="400" rx="2" ry="2" fill="#2e3440" />
+      <line x1="90" y1="50" x2="90" y2="450" stroke="#4c566a" strokeWidth="1" />
+      
+      {/* Elastic Band */}
+      <rect x="280" y="50" width="15" height="400" fill="#2e3440" opacity="0.6" />
+      
+      {/* Label Area (Optional) */}
+      <rect x="140" y="100" width="160" height="60" rx="2" fill="#d8dee9" opacity="0.1" />
+    </svg>
+  );
 
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col md:flex-row overflow-hidden bg-slate-100">
@@ -178,8 +254,8 @@ const Customize: React.FC = () => {
         {/* Total Price Area */}
         <div className="p-6 border-t border-slate-200 bg-slate-50">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-sm text-slate-600">预估价格</span>
-            <span className="text-xl font-bold text-slate-900">¥ 45.00</span>
+            <span className="text-sm text-slate-600">预估价格 ({productType === 'tote' ? '帆布袋' : productType === 'tshirt' ? 'T恤' : '笔记本'})</span>
+            <span className="text-xl font-bold text-slate-900">¥ {prices[productType].toFixed(2)}</span>
           </div>
           <button className="w-full py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
             <ShoppingCart size={18} />
@@ -194,28 +270,22 @@ const Customize: React.FC = () => {
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#64748b 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
 
         {/* The Product Canvas */}
-        <div className="relative w-[500px] h-[600px] bg-white shadow-2xl rounded-2xl flex items-center justify-center overflow-hidden">
-           {/* Product Placeholder Image */}
-           <div className="absolute inset-0 p-8 flex items-center justify-center bg-gray-50">
-             <img 
-               src={
-                 productType === 'tote' ? 'https://imghub.djx-ybelove.pp.ua/file/1765883702786_image.png' :
-                 productType === 'tshirt' ? 'https://imghub.djx-ybelove.pp.ua/file/1765883688215_image.png' :
-                 'https://imghub.djx-ybelove.pp.ua/file/1765883703311_image.png'
-               } 
-               alt="Product Base" 
-               className="w-full h-full object-contain opacity-80 pointer-events-none mix-blend-multiply"
-             />
+        <div className="relative w-[500px] h-[600px] bg-transparent flex items-center justify-center select-none">
+           {/* Product SVG Base */}
+           <div className="absolute inset-0 p-4 flex items-center justify-center pointer-events-none">
+             {productType === 'tote' && <ToteBagSVG />}
+             {productType === 'tshirt' && <TShirtSVG />}
+             {productType === 'notebook' && <NotebookSVG />}
            </div>
            
-           <div className="absolute top-4 left-0 w-full flex items-center justify-center pointer-events-none z-0">
-             <span className="text-slate-400 text-sm font-medium bg-white/50 px-3 py-1 rounded-full backdrop-blur border border-slate-200">
-               {productType === 'tote' ? '帆布袋' : productType === 'tshirt' ? '纯棉T恤' : '手账本'}
+           <div className="absolute top-0 left-0 w-full flex items-center justify-center pointer-events-none z-0">
+             <span className="text-slate-500 text-xs font-medium bg-white/80 px-2 py-0.5 rounded-full backdrop-blur border border-slate-200 shadow-sm mt-2">
+               {productType === 'tote' ? '基础款帆布袋' : productType === 'tshirt' ? '纯棉T恤' : '精装手账本'}
              </span>
            </div>
 
            {/* Drop Zone */}
-           <div className="absolute inset-[20%] border border-dashed border-slate-400/30 rounded-lg">
+           <div className="absolute inset-[25%] border-2 border-dashed border-slate-300/50 rounded-lg hover:border-zjut-blue/30 transition-colors">
               {elements.map((el) => (
                 <div
                   key={el.id}

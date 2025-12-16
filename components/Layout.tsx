@@ -25,10 +25,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             {/* Logo */}
-            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-              <div className="w-8 h-8 bg-zjut-blue rounded-lg flex items-center justify-center text-white font-bold">
-                Z
-              </div>
+            <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+              <img 
+                src="https://www.zjut.edu.cn/_upload/tpl/00/99/153/template153/favicon.ico" 
+                alt="ZJUT Logo" 
+                className="w-8 h-8"
+              />
               <span className="font-bold text-xl text-zjut-blue tracking-tight">ZJUT 文创工坊</span>
             </div>
 
@@ -116,10 +118,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-slate-900 text-slate-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-zjut-blue rounded-lg flex items-center justify-center text-white font-bold">
-                Z
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="https://www.zjut.edu.cn/_upload/tpl/00/99/153/template153/favicon.ico" 
+                alt="ZJUT Logo" 
+                className="w-8 h-8 opacity-80"
+              />
               <span className="font-bold text-xl text-white">ZJUT 文创工坊</span>
             </div>
             <p className="text-slate-400 max-w-sm mb-6">
